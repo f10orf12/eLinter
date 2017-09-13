@@ -48,8 +48,8 @@ function postJSON(O, url, callback) {
     };
     invocation.send(JSON.stringify(O));
 }
-var Results;
 
+var Results;
 
 function lintThis(send) {
 

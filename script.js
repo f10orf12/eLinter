@@ -1,7 +1,6 @@
 // JavaScript source code
 (function () { console.log('hello steve'); })()
 
-
 function findCode(o) {
     var codeString;
     var iB = o.indexOf('<');
