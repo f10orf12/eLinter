@@ -56,7 +56,7 @@ function lintThis(send) {
     var url2 = 'http://10.200.169.196:3002';
     var Results = {};
     var cloned = $('html').clone();
-    cloned = '<!DOCTYPE html /><html lang="en" style="height: 100%; overflow: hidden;">' + cloned[0].innerHTML + '</html>';
+    cloned = '<!DOCTYPE html>\n<html lang="en">\n' + cloned[0].innerHTML + '\n</html>';
     var page = encodeURI(cloned);
     page = JSON.stringify(page);
     postJSON(page, url2, function (d) {
@@ -64,21 +64,21 @@ function lintThis(send) {
         Results = d;
         Results.url = window.location.pathname;
         Results.html = page;
-        if (d.hasOwnProperty('status')) {
-            if ($('#complianceMessage')) {
-                $('#complianceMessage').remove();
-            }
-            $('body').prepend('<div id="complianceMessage" style="display: none; border: 1px solid black; border-radius: 3px; padding: 10px; min-height: 30px; width:200px; position: fixed; top:700px; right: 20px; background-color: green; font-size: 14px; color: white;z-index: 10000;">Saved!</div>')
+        if ($('#complianceMessage')) {
+            $('#complianceMessage').remove();
         }
-        if (d.hasOwnProperty('errornum')) {  //response handling 
-            $('body').prepend('<div id="complianceMessage" style="display: none; border: 1px solid black; border-radius: 3px; padding: 10px; min-height: 30px; width: 200px; position: fixed; top:700px; right: 20px; background-color: red; font-size: 14px; color: white;z-index: 10000;">Error saving compliance data</div>')
+        if (d.hasOwnProperty('status')) {
+            $('body').prepend('<div id="complianceMessage" style="display: none; border: 1px solid black; border-radius: 3px; padding: 10px; min-height: 30px; width:200px; position: fixed; top:700px; right: 20px; background-color: green; font-size: 14px; color: white;z-index: 10000;">Saved!</div>');
+        }
+        if (d.hasOwnProperty('errornum')) {//response handling 
+            $('body').prepend('<div id="complianceMessage" style="display: none; border: 1px solid black; border-radius: 3px; padding: 10px; min-height: 30px; width: 200px; position: fixed; top:700px; right: 20px; background-color: red; font-size: 14px; color: white;z-index: 10000;">Error saving compliance data</div>');
         }
         if (d.hasOwnProperty('complianceErrors')) {
             $('#complianceMessage').fadeIn(500);
             $('#complianceMessage').fadeOut(2000, function () {
                 $('#complianceMessage').removeAttr('style');
                 $('#complianceMessage').attr('style', 'display: none; border: 1px solid black; border-radius: 3px; padding: 10px; min-height: 30px; width: 200px; position: fixed; top:700px; right: 20px; background-color: red; font-size: 14px; color: white;z-index: 10000;');
-                $('#complianceMessage').html('This page has accessibilty compliance errors');
+                $('#complianceMessage').html('This page has HTML lint errors');
                 $('#complianceMessage').fadeIn(500);
                 $('#complianceMessage').fadeOut(3000);
             });

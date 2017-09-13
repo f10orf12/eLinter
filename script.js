@@ -40,7 +40,7 @@ function findCode(o) {
     console.log(iB, ' ', iE, o.slice(iB, iE));
     if (iB != -1) {
         codeString = o.slice(iB, iE);
-        o = o.replace(codeString, '</span><xmp>' + codeString + '</xmp><span>');
+        o = o.replace(codeString, '<xmp>' + codeString + '</xmp>');
     }
 
     return o;
@@ -66,11 +66,19 @@ chrome.runtime.onMessage.addListener(
           $('#page').html(page);
           $('#violations').html('');
           for (var i = 0; i < Results.complianceErrors.length; i++) {
+              var lineNumber = Results.complianceErrors[i].line -1;
               var codeline = lines[Results.complianceErrors[i].line - 1];
+              var errorData='';
+              if (Results.complianceErrors[i].data.tag != undefined) {
+                  errorData = '<pre><code><span><<xmp>' + Results.complianceErrors[i].data.tag + '</xmp>></span></code></pre>'
+              }
+              if (Results.complianceErrors[i].data.id != undefined) {
+                  errorData = '<span>id: ' + Results.complianceErrors[i].data.id + '</span>'
+              }
               codeline = codeline.trim();
               $('#violations').append('<div>' + '<span class="warning critical">' + Results.complianceErrors[i].rule +
-                  '</span><span class="issue">' + Results.complianceErrors[i].code + ' </span><div class="description">Line: ' +
-                  Results.complianceErrors[i].line + ' Column: ' + Results.complianceErrors[i].column + ' ' + '</div>' +
+                  '</span><span class="issue">' + Results.complianceErrors[i].code + ' </span>'+ errorData +'<div class="description">Line: ' +
+                  lineNumber + ' Column: ' + Results.complianceErrors[i].column + ' ' + '</div>' +
                   '<pre class="default prettyprint prettyprinted"><code><span>' + findCode(codeline) + '</span></code></pre></div>');
 
           }
