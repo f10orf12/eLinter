@@ -77,7 +77,7 @@ chrome.runtime.onMessage.addListener(
               }
               codeline = codeline.trim();
               $('#violations').append('<div>' + '<span class="warning critical">' + Results.complianceErrors[i].rule +
-                  '</span><span class="issue">' + Results.complianceErrors[i].code + ' </span>'+ errorData +'<div class="description">Line: ' +
+                  '</span><span class="issue">' + Results.complianceErrors[i].code + ' </span>'+ errorData +'<div class="description">Approx. Line: ' +
                   lineNumber + ' Column: ' + Results.complianceErrors[i].column + ' ' + '</div>' +
                   '<pre class="default prettyprint prettyprinted"><code><span>' + findCode(codeline) + '</span></code></pre></div>');
 

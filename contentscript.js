@@ -52,11 +52,10 @@ function postJSON(O, url, callback) {
 var Results;
 
 function lintThis(send) {
-
     var url2 = 'http://10.200.169.196:3002';
     var Results = {};
-    var cloned = $('html').clone();
-    cloned = '<!DOCTYPE html>\n<html lang="en">\n' + cloned[0].innerHTML + '\n</html>';
+    //var cloned = $('html').clone();
+    cloned = '<!DOCTYPE html>' + document.documentElement.outerHTML;
     var page = encodeURI(cloned);
     page = JSON.stringify(page);
     postJSON(page, url2, function (d) {
@@ -88,8 +87,6 @@ function lintThis(send) {
             });
         }
     });
-
-
 }
 
 $(document).ready(function (e) {
