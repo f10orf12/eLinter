@@ -53,7 +53,7 @@ var Results;
 
 function lintThis(send) {
 
-    var url2 = 'http://localhost:3002';
+    var url2 = 'http://10.200.169.196:3002';
     var Results = {};
     var cloned = $('html').clone();
     cloned = '<!DOCTYPE html /><html lang="en" style="height: 100%; overflow: hidden;">' + cloned[0].innerHTML + '</html>';
