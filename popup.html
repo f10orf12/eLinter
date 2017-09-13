@@ -1,0 +1,180 @@
+<!doctype html>
+<!--
+ This page is shown when the extension button is clicked, because the
+ "browser_action" field in manifest.json contains the "default_popup" key with
+ value "popup.html".
+ -->
+<html>
+<head>
+    <title>CourtView 508 Compliance</title>
+    <style>
+        /* http://meyerweb.com/eric/tools/css/reset/
+           v2.0 | 20110126
+           License: none (public domain)
+        */
+
+        html, body, div, span, applet, object, iframe,
+        h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+        a, abbr, acronym, address, big, cite, code,
+        del, dfn, em, img, ins, kbd, q, s, samp,
+        small, strike, strong, sub, sup, tt, var,
+        b, u, i, center,
+        dl, dt, dd, ol, ul, li,
+        fieldset, form, label, legend,
+        table, caption, tbody, tfoot, thead, tr, th, td,
+        article, aside, canvas, details, embed,
+        figure, figcaption, footer, header, hgroup,
+        menu, nav, output, ruby, section, summary,
+        time, mark, audio, video {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            font-size: 100%;
+            font: inherit;
+            vertical-align: baseline;
+        }
+        /* HTML5 display-role reset for older browsers */
+        article, aside, details, figcaption, figure,
+        footer, header, hgroup, menu, nav, section {
+            display: block;
+        }
+
+        body {
+            line-height: 1;
+        }
+
+        ol, ul {
+            list-style: none;
+        }
+
+        blockquote, q {
+            quotes: none;
+        }
+
+            blockquote:before, blockquote:after,
+            q:before, q:after {
+                content: '';
+                content: none;
+            }
+
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+
+        body {
+            font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
+            font-size: 100%;
+        }
+
+        h1{
+            height: 25px;
+            text-align:left;
+        }
+
+        #status {
+            /* avoid an excessively wide status text */
+            white-space: pre;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            max-width: 400px;
+            min-width: 250px;
+            font-size: 12px;
+            padding: 25px 10px 10px 25px;
+        }
+
+        #page {
+            color: darkgray;
+            font-size: 15px;
+            text-transform: uppercase;
+        }
+
+        #violations {
+            padding: 10px;
+        }
+        
+        #violations > div:nth-of-type(odd) {
+            background:#fdfbfb;
+            padding: 5px;
+        }
+
+        .label {
+            text-transform: lowercase;
+            font-variant: small-caps;
+            font-size: 14px;
+        }
+
+        .warning {
+            font-size: 14px;
+            padding-right: 5px;
+            text-transform: capitalize;
+        }
+
+        .critical {
+            color: red;
+        }
+
+        .serious {
+            color: orange;
+        }
+
+        .issue {
+            padding-left: 10px;
+            font-size: 14px;
+            text-transform: capitalize;
+        }
+
+        .description {
+            padding: 5px 0 2px 5px;
+        }
+
+        .affected {
+            padding: 5px;
+            font-size: 11px;
+            color: gray;
+        }
+
+        .printprint {
+            display: block;
+            color: #393318;
+        }
+
+        pre {
+            margin-bottom: 1em;
+            padding: 5px;
+            padding-bottom: 20px !ie7;
+            width: auto;
+            overflow: auto;
+            font-family: Consolas,Menlo,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New,monospace,sans-serif;
+            font-size: 13px;
+            background-color: #eff0f1;
+        }
+
+        xmp {
+            display: inline-block;
+        } 
+
+        span {
+            display: inline-block;
+            padding-right: 5px;
+        }
+    </style>
+    <!--
+      - JavaScript and HTML must be in separate files: see our Content Security
+      - Policy documentation[1] for details and explanation.
+      -
+      - [1]: https://developer.chrome.com/extensions/contentSecurityPolicy
+     -->
+    <script src="jQuery.js"></script>
+    <script src="script.js"></script>
+</head>
+<body>
+    <div id="status">
+        <h1>
+            <span class="label">Page: </span><span id="page"></span>
+        </h1>
+        <div id="violations"></div>
+    </div>
+    <img id="image-result" hidden>
+</body>
+</html>
