@@ -77,7 +77,7 @@ function lintThis(send) {
             $('#complianceMessage').fadeIn(500);
             $('#complianceMessage').fadeOut(2000, function () {
                 $('#complianceMessage').removeAttr('style');
-                $('#complianceMessage').attr('style', 'display: none; border: 1px solid black; border-radius: 3px; padding: 10px; min-height: 30px; width: 200px; position: fixed; top:700px; right: 20px; background-color: red; font-size: 14px; color: white;z-index: 10000;');
+                $('#complianceMessage').attr('style', 'display: none; border: 1px solid black; border-radius: 3px; padding: 10px; min-height: 30px; width: 200px; position: fixed; top:700px; right: 20px; background-color: orange; font-size: 14px; color: white;z-index: 10000;');
                 $('#complianceMessage').html('This page has HTML lint errors');
                 $('#complianceMessage').fadeIn(500);
                 $('#complianceMessage').fadeOut(3000);

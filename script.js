@@ -70,7 +70,7 @@ chrome.runtime.onMessage.addListener(
               var codeline = lines[Results.complianceErrors[i].line - 1];
               var errorData='';
               if (Results.complianceErrors[i].data.tag != undefined) {
-                  errorData = '<pre><code><span><<xmp>' + Results.complianceErrors[i].data.tag + '</xmp>></span></code></pre>'
+                  errorData = '<code><span>Tag: <<xmp>' + Results.complianceErrors[i].data.tag + '</xmp>></span></code>'
               }
               if (Results.complianceErrors[i].data.id != undefined) {
                   errorData = '<span>id: ' + Results.complianceErrors[i].data.id + '</span>'
