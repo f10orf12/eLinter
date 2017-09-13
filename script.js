@@ -1,11 +1,22 @@
+// Hello.
+//
+// This is JSHint, a tool that helps to detect errors and potential
+// problems in your JavaScript code.
+//
+// To start, simply enter some JavaScript anywhere on this page. Your
+// report will appear on the right side.
+//
+// Additionally, you can toggle specific options in the Configure
+// menu.
+
 // JavaScript source code
-(function () { console.log('hello steve'); })()
+
 
 function findCode(o) {
     var codeString;
     var iB = o.indexOf('<');
     var iE;
-    beginCodeString = o.slice(iB, 4);
+    var beginCodeString = o.slice(iB, 4);
     if (beginCodeString == '<div') {
         iE = o.indexOf('</div>');
         iE += 6;
@@ -20,10 +31,10 @@ function findCode(o) {
     }
     if (beginCodeString == '<label') {
         iE = o.indexOf('</label>');
-        iE *= 8;
+        iE += 8;
     }
-    
-    console.log('new slice: ',iB, ' ', iE, o.slice(iB, iE))
+
+    console.log('new slice: ', iB, ' ', iE, o.slice(iB, iE));
     //var iE = o.indexOf('>');
     //iE++;
     console.log(iB, ' ', iE, o.slice(iB, iE));
@@ -41,27 +52,27 @@ chrome.runtime.onMessage.addListener(
                   "from a content script:" + sender.tab.url :
                   "from the extension from the script");
       Results = request;
-     
+
       if (Results) {
           console.log('sending farewell');
           sendResponse({ farewell: "success" });
-      
-          var page = Results.url;
-          page = page.slice(page.lastIndexOf('/') + 1, page.lastIndexOf('page') - 1)
 
-          var html = Results.html
+          var page = Results.url;
+          page = page.slice(page.lastIndexOf('/') + 1, page.lastIndexOf('page') - 1);
+
+          var html = Results.html;
           html = decodeURI(html);
           var lines = html.split('\n');
           $('#page').html(page);
           $('#violations').html('');
-          for (i = 0; i < Results.complianceErrors.length; i++) {
-              var codeline = lines[Results.complianceErrors[i].line - 1]
+          for (var i = 0; i < Results.complianceErrors.length; i++) {
+              var codeline = lines[Results.complianceErrors[i].line - 1];
               codeline = codeline.trim();
               $('#violations').append('<div>' + '<span class="warning critical">' + Results.complianceErrors[i].rule +
                   '</span><span class="issue">' + Results.complianceErrors[i].code + ' </span><div class="description">Line: ' +
                   Results.complianceErrors[i].line + ' Column: ' + Results.complianceErrors[i].column + ' ' + '</div>' +
                   '<pre class="default prettyprint prettyprinted"><code><span>' + findCode(codeline) + '</span></code></pre></div>');
-              
+
           }
       }
       return true;
